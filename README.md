@@ -35,7 +35,7 @@ mkdir ~/frab/
 
 Add to the shared folder the configuration files and adjust them. Use `mysql` as mysql host.
 
-#### [`database.yml`](https://raw.githubusercontent.com/frab/frab/master/database.yml.template)
+#### [`database.yml`](database.yml.template)
 
 ```yaml
 production:
@@ -48,7 +48,7 @@ production:
   port: 3306
 ```
 
-#### [`settings.yml`](https://raw.githubusercontent.com/frab/frab/master/settings.yml.template)
+#### [`settings.yml`](settings.yml.template)
 
 ```yaml
 production:
