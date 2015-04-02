@@ -3,17 +3,26 @@
 # Switch to app dir
 cd /home/app/frab
 
-# Symlink system folder
+# Create shared public folder if it doesn't exist
 if [ ! -d /home/app/shared/public/ ]; then
 	mkdir -p /home/app/shared/public/
-	ln -s /home/app/shared/public/ public/system
 	chown -R app:app /home/app/shared/public/
 fi
 
-# Secrets
+# Symlink system folder
+if [ ! -h public/system ]; then
+	ln -s /home/app/shared/public/ public/system
+fi
+
+# Generate secret token and symlink it into the application
 if [ ! -f /home/app/frab/config/initializers/secret_token.rb ]; then
-	sudo -u app cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
-	sudo -u app sed -i "s/iforgottochangetheexampletokenandnowvisitorscanexecutecodeonmyserver/$(bundle exec rake secret)/g" config/initializers/secret_token.rb
+	if [ ! -f /home/app/shared/secret_token.rb ]; then
+		SECRET = `sudo -u app RAILS_ENV=production bundle exec rake secret`
+		cp config/initializers/secret_token.rb.example /home/app/shared/secret_token.rb
+		sed -i "s/iforgottochangetheexampletokenandnowvisitorscanexecutecodeonmyserver/$SECRET/g" /home/app/shared/secret_token.rb
+	fi
+
+	ln -s /home/app/shared/secret_token.rb config/initializers/secret_token.rb
 fi
 
 # Symlink configuration
