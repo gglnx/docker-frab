@@ -67,5 +67,5 @@ production:
 After initializing the shared folder and the configuration you can start the container with frab. Startup takes a few minutes to complete installations tasks (create and migrate database, precompile assets).
 
 ```bash
-docker run -e PASSENGER_APP_ENV=production --name frab --link mariadb:mysql -p 8999:80 -v ~/frab/:/home/app/shared/ gglnx/frab
+docker run -e PASSENGER_APP_ENV=production --name frab --link mariadb:mysql -v ~/frab/:/home/app/shared/ gglnx/frab
 ``` 
