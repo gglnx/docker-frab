@@ -31,10 +31,6 @@ RUN chown -R app:app /home/app/frab
 # Install gem dependencies
 RUN sudo -u app bundle install --deployment --without=pg sqlite3
 
-# Generate secret and update screct_token.rb
-RUN sudo -u app cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
-RUN sudo -u app sed -i "s/iforgottochangetheexampletokenandnowvisitorscanexecutecodeonmyserver/$(bundle exec rake secret)/g" config/initializers/secret_token.rb
-
 # Setup persistent storage
 RUN rm -rf public/system
 VOLUME /home/app/shared
