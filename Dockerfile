@@ -11,6 +11,9 @@ ENV HOME /home/app
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 
+# Update OS
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+
 # Start Nginx / Passenger
 RUN rm -f /etc/service/nginx/down
 
