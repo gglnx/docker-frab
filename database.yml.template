@@ -1,8 +1,0 @@
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: my_db_name
-  username: frab
-  password: my_password
-  host: mysql
-  port: 3306

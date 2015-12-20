@@ -1,9 +1,0 @@
-production:
-  host: frab.example.com
-  protocol: https
-  from_email: noreply@frab.example.com
-  # smtp server settings. see
-  # http://api.rubyonrails.org/classes/ActionMailer/Base.html
-  # for all available options
-  smtp_settings:
-    address: localhost

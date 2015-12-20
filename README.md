@@ -33,34 +33,7 @@ mkdir ~/frab/
 
 ### Add configuration
 
-Add to the shared folder the configuration files and adjust them. Use `mysql` as mysql host.
-
-#### [`database.yml`](database.yml.template)
-
-```yaml
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: frab
-  username: frab
-  password: my_password
-  host: mysql
-  port: 3306
-```
-
-#### [`settings.yml`](settings.yml.template)
-
-```yaml
-production:
-  host: frab.example.com
-  protocol: https
-  from_email: noreply@frab.example.com
-  # smtp server settings. see
-  # http://api.rubyonrails.org/classes/ActionMailer/Base.html
-  # for all available options
-  smtp_settings:
-    address: localhost
-```
+Add to the shared folder the `.env` configuration file. Use the included `.env.template` as a template and `mysql` as mysql host.
 
 ### Run container
 

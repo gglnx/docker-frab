@@ -14,24 +14,22 @@ if [ ! -h public/system ]; then
 	ln -s /home/app/shared/public/ public/system
 fi
 
-# Generate secret token and symlink it into the application
-if [ ! -f /home/app/frab/config/initializers/secret_token.rb ]; then
-	if [ ! -f /home/app/shared/secret_token.rb ]; then
-		SECRET = `sudo -u app RAILS_ENV=production bundle exec rake secret`
-		cp config/initializers/secret_token.rb.example /home/app/shared/secret_token.rb
-		sed -i "s/iforgottochangetheexampletokenandnowvisitorscanexecutecodeonmyserver/$SECRET/g" /home/app/shared/secret_token.rb
-	fi
-
-	ln -s /home/app/shared/secret_token.rb config/initializers/secret_token.rb
+# Remove old symlinks
+if [ -h /home/app/frab/config/initializers/secret_token.rb ]; then
+	rm /home/app/frab/config/initializers/secret_token.rb
 fi
 
-# Symlink configuration
-if [ ! -f /home/app/frab/config/database.yml ]; then
-	ln -s /home/app/shared/database.yml /home/app/frab/config/database.yml
+if [ -h /home/app/frab/config/database.yml ]; then
+	rm /home/app/frab/config/database.yml
 fi
 
-if [ ! -f /home/app/frab/config/settings.yml ]; then
-        ln -s /home/app/shared/settings.yml /home/app/frab/config/settings.yml
+if [ -h /home/app/frab/config/settings.yml ]; then
+        rm /home/app/frab/config/settings.yml
+fi
+
+# Symlink .env
+if [ ! -f /home/app/frab/.env ]; then
+	ln -s /home/app/shared/.env /home/app/frab/.env
 fi
 
 # Precompile assets
