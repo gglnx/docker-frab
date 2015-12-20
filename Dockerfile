@@ -1,6 +1,6 @@
 # Using the base image with Ruby 2.0 from Phusion
 # See: https://github.com/phusion/passenger-docker
-FROM phusion/passenger-ruby20:0.9.15
+FROM phusion/passenger-ruby20:0.9.18
 
 # Set maintainer
 MAINTAINER Dennis Morhardt "info@dennismorhardt.de"
