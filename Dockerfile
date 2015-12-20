@@ -26,6 +26,7 @@ RUN apt-get install -y nodejs imagemagick
 # Clone frab from GitHub
 WORKDIR /home/app/frab
 RUN git clone https://github.com/frab/frab.git .
+RUN git pull && git checkout 1f67274209cf6b55e0a505a8fb3bfcd761e93d6b
 RUN chown -R app:app /home/app/frab
 
 # Install gem dependencies
